@@ -1,6 +1,8 @@
-import Express from './assets/express.png'
-import AmericanExpress from './assets/americanExpress.png'
-import ExpressCream from './assets/expressCream.png'
+import { Express } from './assets/Express'
+import { ExpressAmerican } from './assets/ExpressAmerican'
+import { ExpressCream } from './assets/ExpressCream'
+import { ExpressIce } from './assets/ExpressIce' 
+import { Havain } from './assets/Havain'
 import {
   ButtonShoppingCart,
   BuyContainer,
@@ -9,6 +11,7 @@ import {
   CounterContainer,
 } from './styles'
 import { Minus, Plus, ShoppingCart } from '@phosphor-icons/react'
+import { useState } from 'react'
 
 export function CoffeList() {
   interface CoffeListProps {
@@ -24,9 +27,9 @@ export function CoffeList() {
     description: string
   }
 
-  const coffeList: CoffeListProps[] = [
+  const [coffeList, setCoffeList] = useState([
     {
-      image: Express,
+      image: <Express />,
       options: {
         tradicional: 'tradicional',
       },
@@ -50,7 +53,7 @@ export function CoffeList() {
       description: 'Café expresso tradicional com espuma cremosa',
     },
     {
-      image: Express,
+      image: ,
       options: {
         tradicional: 'tradicional',
         gelado: 'gelado',
@@ -181,7 +184,7 @@ export function CoffeList() {
       type: 'Expresso Tradicional',
       description: 'O tradicional café feito com água quente e grãos moídos',
     },
-  ]
+  ])
 
   return (
     <CardContainer>
