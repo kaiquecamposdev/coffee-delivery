@@ -35,11 +35,11 @@ export function Items() {
 
   return (
     <>
-      {itemsList.map((item) => {
+      {itemsList.map(({ content, color, icon }) => {
         return (
-          <ListContainer key={item.content} color={item.color}>
-            <i>{item.icon}</i>
-            <span>{item.content}</span>
+          <ListContainer key={content} color={color}>
+            <i>{icon}</i>
+            <span>{content}</span>
           </ListContainer>
         )
       })}

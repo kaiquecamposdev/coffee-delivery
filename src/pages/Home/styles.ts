@@ -4,14 +4,16 @@ import backgroundTitle from './assets/backgroundTitle.png'
 export const ContainerHome = styled.main`
   display: grid;
 `
+
 export const ContainerTitle = styled.section`
   display: grid;
   grid-template-columns: 1fr auto;
 
-  background: transparent url(${backgroundTitle}) center center no-repeat;
+  background: ${(props) => props.theme['gray-100']} url(${backgroundTitle})
+    center center no-repeat;
   background-size: cover;
 
-  padding: 5.25rem 10rem;
+  padding: 5.75rem 10rem;
   gap: 4.81rem;
 `
 
@@ -39,7 +41,7 @@ export const Title = styled.div`
   }
 `
 
-export const ItemsList = styled.div`
+export const ItemsListTitleContainer = styled.div`
   display: grid;
   grid-template-columns: auto auto;
 

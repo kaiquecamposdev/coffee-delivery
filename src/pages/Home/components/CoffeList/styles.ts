@@ -17,24 +17,11 @@ export const CardCoffe = styled.div`
   padding: 1.5rem 1.25rem;
 
   background: ${(props) => props.theme['gray-200']};
-  & img {
+  & > img {
     margin-top: calc(-1.5rem - 1.25rem);
 
     display: block;
     width: 120px;
-  }
-  & > span {
-    font-family: 'Roboto', sans-serif;
-    font-size: 0.625rem;
-    font-weight: 700;
-    text-transform: uppercase;
-
-    color: ${(props) => props.theme['yellow-700']};
-
-    background: ${(props) => props.theme['yellow-100']};
-    border-radius: 6.25rem;
-    padding: 0.25rem 0.5rem;
-    margin: 0.75rem 0 1rem 0;
   }
   & > h3 {
     font-family: 'Baloo 2', sans-serif;
@@ -53,6 +40,24 @@ export const CardCoffe = styled.div`
   }
 `
 
+export const OptionsContainer = styled.div`
+  display: inline-flex;
+  gap: 0.25rem;
+  & > span {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    color: ${(props) => props.theme['yellow-700']};
+
+    background: ${(props) => props.theme['yellow-100']};
+    border-radius: 6.25rem;
+    padding: 0.25rem 0.5rem;
+    margin: 0.75rem 0 1rem 0;
+  }
+`
+
 export const BuyContainer = styled.div`
   display: flex;
   gap: 1.44rem;
@@ -62,12 +67,14 @@ export const BuyContainer = styled.div`
     justify-content: center;
     align-items: center;
 
+    gap: 0.2rem;
+
     & span {
       font-size: 1rem;
       font-weight: 400;
       font-family: 'Roboto', sans-serif;
     }
-    & p {
+    & strong {
       font-family: 'Baloo 2', sans-serif;
       font-size: 1.5rem;
       font-weight: 800;
@@ -114,6 +121,7 @@ export const CounterContainer = styled.div`
     color: ${(props) => props.theme['900']};
   }
 `
+
 export const ButtonShoppingCart = styled.button`
   cursor: pointer;
 

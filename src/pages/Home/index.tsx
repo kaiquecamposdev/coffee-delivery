@@ -4,7 +4,7 @@ import {
   ContainerCoffeList,
   ContainerHome,
   ContainerTitle,
-  ItemsList,
+  ItemsListTitleContainer,
   Title,
 } from './styles'
 import CoffeIntro from './assets/CoffeIntro.png'
@@ -21,9 +21,9 @@ export function Home() {
               Com o Coffee Delivery você recebe seu café onde estiver, a
               qualquer hora
             </h2>
-            <ItemsList>
+            <ItemsListTitleContainer>
               <Items />
-            </ItemsList>
+            </ItemsListTitleContainer>
           </Title>
           <CoffeLogo>
             <img src={CoffeIntro} alt="" />

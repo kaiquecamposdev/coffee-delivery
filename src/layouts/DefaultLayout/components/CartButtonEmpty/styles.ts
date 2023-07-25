@@ -9,6 +9,6 @@ export const CartButtonEmptyContainer = styled.button`
 
   background: ${(props) => props.theme['yellow-100']};
 
-  padding: 0.375rem;
+  padding: 0.5rem;
   border-radius: 0.375rem;
 `
