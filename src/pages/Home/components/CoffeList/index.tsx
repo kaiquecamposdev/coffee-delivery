@@ -13,15 +13,11 @@ import { CoffeListContext } from '../../../../contexts/CoffeListContext'
 export function CoffeList() {
   const { coffeList, onDecreaceItem, onIncreaseItem } =
     useContext(CoffeListContext)
-  const [{ type }] = coffeList
 
-  function handleDecreaceItem() {
-    console.log(type + ' Esse é o type da função Decreace')
+  function handleDecreaceItem(type: string) {
     onDecreaceItem(type)
   }
-
-  function handleIncreaseItem() {
-    console.log(type + ' Esse é o type da função Increase')
+  function handleIncreaseItem(type: string) {
     onIncreaseItem(type)
   }
 
@@ -32,10 +28,10 @@ export function CoffeList() {
           <>
             <CardCoffe key={type}>
               <img src={image} alt="" />
-              <OptionsContainer>
-                {options.map((option) => {
-                  return <span key={option}>{option}</span>
-                })}
+              <OptionsContainer key={10}>
+                {options.map((option) => (
+                  <span key={option}>{option}</span>
+                ))}
               </OptionsContainer>
               <h3>{type}</h3>
               <p>{description}</p>
@@ -47,11 +43,11 @@ export function CoffeList() {
                 </div>
                 <div>
                   <CounterContainer>
-                    <button onClick={handleDecreaceItem}>
+                    <button onClick={() => handleDecreaceItem(type)}>
                       <Minus size={14} weight="bold" />
                     </button>
                     <span>{quantity}</span>
-                    <button onClick={handleIncreaseItem}>
+                    <button onClick={() => handleIncreaseItem(type)}>
                       <Plus size={14} weight="bold" />
                     </button>
                   </CounterContainer>
