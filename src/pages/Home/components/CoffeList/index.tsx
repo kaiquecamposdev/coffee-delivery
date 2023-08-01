@@ -11,8 +11,12 @@ import {
 import { CoffeListContext } from '../../../../contexts/CoffeListContext'
 
 export function CoffeList() {
-  const { coffeList, onDecreaceItem, onIncreaseItem } =
-    useContext(CoffeListContext)
+  const {
+    coffeList,
+    onDecreaceItem,
+    onIncreaseItem,
+    increaseItemsInShoppingCart,
+  } = useContext(CoffeListContext)
 
   function handleDecreaceItem(type: string) {
     onDecreaceItem(type)
@@ -51,7 +55,7 @@ export function CoffeList() {
                       <Plus size={14} weight="bold" />
                     </button>
                   </CounterContainer>
-                  <ButtonShoppingCart>
+                  <ButtonShoppingCart onClick={increaseItemsInShoppingCart}>
                     <ShoppingCart weight="fill" size={22} color="white" />
                   </ButtonShoppingCart>
                 </div>
