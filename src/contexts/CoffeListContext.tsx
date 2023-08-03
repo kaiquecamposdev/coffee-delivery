@@ -17,6 +17,7 @@ import {
 import { produce } from 'immer'
 
 import { ReactNode, createContext, useState } from 'react'
+import { CoffeList } from '../pages/Home/components/CoffeList'
 
 interface CoffeListProps {
   image: string
@@ -32,20 +33,18 @@ interface CoffeListProps {
   price: string
   quantity: number
 }
-
 export type DecreaceItemPropsType = {
   onDecreaceItem: (type: string) => void
 }
 export type IncreaseItemPropsType = {
   onIncreaseItem: (type: string) => void
 }
-
 interface ListCoffeDeliveryProps {
   coffeList: CoffeListProps[]
   itemsTheShoppingCart: CoffeListProps[]
   onIncreaseItem: (type: string) => void
   onDecreaceItem: (type: string) => void
-  increaseItemsInShoppingCart: () => void
+  increaseItemsInShoppingCart: (type: string) => void
 }
 export const CoffeListContext = createContext({} as ListCoffeDeliveryProps)
 
@@ -203,16 +202,22 @@ export function CoffeListContextProvider({
     })
     setCoffeList(updatedState)
   }
-  function increaseItemsInShoppingCart() {
-    const itemsIncreased = coffeList.find((item) => item.quantity > 0)
-    if (itemsIncreased) {
-      const updatedState = produce(itemsTheShoppingCart, (draft) => {
-        const itemsAddedTheShoppingCart = coffeList.filter(
-          (item) => item.quantity > 0,
-        )
-      })
-      console.table(updatedState)
-    }
+  function increaseItemsInShoppingCart(type: string) {
+    const updatedState: any = produce(coffeList, (draft) => {
+      const indexTheTypeForDecreace = draft.findIndex(
+        (item) => item.quantity > 0,
+      )
+      const typeForIncreaseInShoppingCart =
+        draft[indexTheTypeForDecreace].type === type
+      if (
+        typeForIncreaseInShoppingCart &&
+        draft[indexTheTypeForDecreace].quantity > 0
+      ) {
+        return draft[indexTheTypeForDecreace]
+      }
+    })
+    console.log(updatedState)
+    setItemsTheShoppingCart(updatedState)
   }
 
   return (
