@@ -28,42 +28,40 @@ export function CoffeList() {
   return (
     <CardContainer>
       {coffeList.map(
-        ({ image, options, type, description, price, quantity }) => (
-          <>
-            <CardCoffe key={type}>
-              <img key={image} src={image} alt="" />
-              <OptionsContainer>
-                {options.map((option) => (
-                  <span key={option}>{option}</span>
-                ))}
-              </OptionsContainer>
-              <h3 key={type}>{type}</h3>
-              <p key={description}>{description}</p>
+        ({ image, description, price, options, quantity, type }) => (
+          <CardCoffe key={type}>
+            <img key={image} src={image} alt="" />
+            <OptionsContainer>
+              {options.map((option) => (
+                <span key={option}>{option}</span>
+              ))}
+            </OptionsContainer>
+            <h3 key={type}>{type}</h3>
+            <p key={description}>{description}</p>
 
-              <BuyContainer>
-                <div>
-                  <span>R$</span>
-                  <strong key={price}>{price}</strong>
-                </div>
-                <div>
-                  <CounterContainer>
-                    <button onClick={() => handleDecreaceItem(type)}>
-                      <Minus size={14} weight="bold" />
-                    </button>
-                    <span key={quantity}>{quantity}</span>
-                    <button onClick={() => handleIncreaseItem(type)}>
-                      <Plus size={14} weight="bold" />
-                    </button>
-                  </CounterContainer>
-                  <ButtonShoppingCart
-                    onClick={() => increaseItemsInShoppingCart(type)}
-                  >
-                    <ShoppingCart weight="fill" size={22} color="white" />
-                  </ButtonShoppingCart>
-                </div>
-              </BuyContainer>
-            </CardCoffe>
-          </>
+            <BuyContainer>
+              <div>
+                <span>R$</span>
+                <strong key={price}>{price}</strong>
+              </div>
+              <div>
+                <CounterContainer>
+                  <button onClick={() => handleDecreaceItem(type)}>
+                    <Minus size={14} weight="bold" />
+                  </button>
+                  <span key={quantity}>{quantity}</span>
+                  <button onClick={() => handleIncreaseItem(type)}>
+                    <Plus size={14} weight="bold" />
+                  </button>
+                </CounterContainer>
+                <ButtonShoppingCart
+                  onClick={() => increaseItemsInShoppingCart(type)}
+                >
+                  <ShoppingCart weight="fill" size={22} color="white" />
+                </ButtonShoppingCart>
+              </div>
+            </BuyContainer>
+          </CardCoffe>
         ),
       )}
     </CardContainer>

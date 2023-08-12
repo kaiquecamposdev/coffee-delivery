@@ -1,0 +1,5 @@
+export { default as Pin } from '../../Checkout/assets/imgs/Pin.svg'
+export { default as Cipher } from '../../Checkout/assets/imgs/Cipher.svg'
+export { default as CreditCard } from '../../Checkout/assets/imgs/CreditCard.svg'
+export { default as DebitCard } from '../../Checkout/assets/imgs/DebitCard.svg'
+export { default as Money } from '../../Checkout/assets/imgs/Money.svg'

@@ -10,6 +10,9 @@ export const GlobalStyles = createGlobalStyle`
 	  -webkit-font-smoothing: antialiased;
 	  -moz-osx-font-smoothing: grayscale;
   }
+  *:focus {
+    outline-color: ${(props) => props.theme['purple-700']};
+  }
   body {
 	  background: ${(props) => props.theme['gray-100']};
     color: ${(props) => props.theme['gray-700']};
@@ -20,4 +23,19 @@ export const GlobalStyles = createGlobalStyle`
 		font-weight: 400;
 		font-size: 1rem;
 	}
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: transparent ${(props) => props.theme.white};
+  }
+  *::-webkit-scrollbar {
+    width: 12px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: #b0b0b0;
+    border-radius: 10px;
+    border: 2px solid ${(props) => props.theme.white};
+  }
 `

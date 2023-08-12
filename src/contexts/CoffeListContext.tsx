@@ -14,10 +14,10 @@ import {
   Macchiato,
   Mocaccino,
 } from '../pages/Home/assets/icons'
+import { CreditCard, DebitCard, Money } from '../pages/Checkout/assets/icons'
 import { produce } from 'immer'
 
 import { ReactNode, createContext, useState } from 'react'
-import { CoffeList } from '../pages/Home/components/CoffeList'
 
 interface CoffeListProps {
   image: string
@@ -33,17 +33,37 @@ interface CoffeListProps {
   price: string
   quantity: number
 }
+interface PaymentMethodsType {
+  name: string
+  method: string
+  checked: boolean
+}
+
 export type DecreaceItemPropsType = {
   onDecreaceItem: (type: string) => void
 }
 export type IncreaseItemPropsType = {
   onIncreaseItem: (type: string) => void
 }
+// TIPAGEM DO STATE DA FILTRAGEM
+// interface CoffeOptionsProps {
+//   options: [
+//     tradicional?: string,
+//     comLeite?: string,
+//     gelado?: string,
+//     especial?: string,
+//     alcoolico?: string,
+//   ]
+// }
 interface ListCoffeDeliveryProps {
   coffeList: CoffeListProps[]
   itemsTheShoppingCart: CoffeListProps[]
+  paymentMethods: PaymentMethodsType[]
   onIncreaseItem: (type: string) => void
   onDecreaceItem: (type: string) => void
+  onSelectChecked: (nameTheObjectForChecked: string) => void
+  // onFilterTheItems: (option: string) => void
+  // filteredItems: CoffeOptionsProps[]
   increaseItemsInShoppingCart: (type: string) => void
 }
 export const CoffeListContext = createContext({} as ListCoffeDeliveryProps)
@@ -177,6 +197,25 @@ export function CoffeListContextProvider({
   const [itemsTheShoppingCart, setItemsTheShoppingCart] = useState<
     CoffeListProps[]
   >([])
+  const [paymentMethods, setPaymentMethods] = useState<PaymentMethodsType[]>([
+    {
+      name: 'cartão de crédito',
+      method: CreditCard,
+      checked: false,
+    },
+    {
+      name: 'cartão de débito',
+      method: DebitCard,
+      checked: false,
+    },
+    {
+      name: 'dinheiro',
+      method: Money,
+      checked: false,
+    },
+  ])
+  // ESTADO QUE SERÁ ARMAZENADO OS ITENS FILTRADOS
+  // const [filteredItems, setFilteredItems] = useState<CoffeOptionsProps[]>([])
 
   function onIncreaseItem(type: string) {
     const updatedState = produce(coffeList, (draft) => {
@@ -202,22 +241,58 @@ export function CoffeListContextProvider({
     })
     setCoffeList(updatedState)
   }
+  // LÓGICA DE FILTRAR ITENS
+  // function onFilterTheItems(option: string) {
+  //   const updatedState = produce(coffeList, (draft) => {
+  //     const typeForFilter = draft.find((item) => item.options.includes(option))
+
+  //     const indexTheItemForFilter = draft.findIndex((item) =>
+  //       item.options.includes(option),
+  //     )
+
+  //     if (typeForFilter) {
+  //       draft.map(
+  //         (item) =>
+  //           item.options[indexTheItemForFilter] ===
+  //           typeForFilter.options[indexTheItemForFilter],
+  //       )
+  //     }
+  //     setCoffeList(updatedState)
+  //   })
+
+  //   console.log(filteredItems)
+  // }
   function increaseItemsInShoppingCart(type: string) {
-    const updatedState: any = produce(coffeList, (draft) => {
-      const indexTheTypeForDecreace = draft.findIndex(
-        (item) => item.quantity > 0,
+    const typeForAddInShoppingCart = coffeList.find(
+      (item) => item.type === type,
+    )
+    const indexTheItemForAddInShoppingCart = coffeList.findIndex(
+      (item) => item.type === type,
+    )
+
+    if (typeForAddInShoppingCart) {
+      const updatedState = coffeList[indexTheItemForAddInShoppingCart]
+      const emptyQuantity = produce(coffeList, (draft) => {
+        draft[indexTheItemForAddInShoppingCart].quantity = 0
+      })
+      console.table(emptyQuantity)
+      console.table(updatedState)
+      setItemsTheShoppingCart((prevState) => [...prevState, updatedState])
+      setCoffeList(emptyQuantity)
+    }
+  }
+  function onSelectChecked(nameTheObjectForChecked: string) {
+    const updatedState = produce(paymentMethods, (draft) => {
+      const indexTheObjectForChecked = paymentMethods.findIndex(
+        (props) => props.name === nameTheObjectForChecked,
       )
-      const typeForIncreaseInShoppingCart =
-        draft[indexTheTypeForDecreace].type === type
-      if (
-        typeForIncreaseInShoppingCart &&
-        draft[indexTheTypeForDecreace].quantity > 0
-      ) {
-        return draft[indexTheTypeForDecreace]
-      }
+
+      const isChecked = draft[indexTheObjectForChecked].checked
+
+      draft[indexTheObjectForChecked].checked = !isChecked
     })
-    console.log(updatedState)
-    setItemsTheShoppingCart(updatedState)
+
+    setPaymentMethods(updatedState)
   }
 
   return (
@@ -225,8 +300,12 @@ export function CoffeListContextProvider({
       value={{
         coffeList,
         itemsTheShoppingCart,
+        paymentMethods,
         onIncreaseItem,
         onDecreaceItem,
+        onSelectChecked,
+        // onFilterTheItems,
+        // filteredItems,
         increaseItemsInShoppingCart,
       }}
     >

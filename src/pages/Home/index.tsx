@@ -4,11 +4,13 @@ import {
   ContainerCoffeList,
   ContainerHome,
   ContainerTitle,
+  HeaderCoffeList,
   ItemsListTitleContainer,
   Title,
 } from './styles'
 import CoffeIntro from './assets/CoffeIntro.png'
 import { CoffeList } from './components/CoffeList'
+import { FilterTheCoffes } from './components/FilterTheCoffes'
 
 export function Home() {
   return (
@@ -30,7 +32,10 @@ export function Home() {
           </CoffeLogo>
         </ContainerTitle>
         <ContainerCoffeList>
-          <h2>Nossos cafés</h2>
+          <HeaderCoffeList>
+            <h2>Nossos cafés</h2>
+            <FilterTheCoffes />
+          </HeaderCoffeList>
           <CoffeList />
         </ContainerCoffeList>
       </ContainerHome>

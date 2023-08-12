@@ -11,6 +11,4 @@ export const CartButtonEmptyContainer = styled.button`
 
   padding: 0.5rem;
   border-radius: 0.375rem;
-
-  cursor: pointer;
 `

@@ -56,13 +56,18 @@ export const CoffeLogo = styled.div`
 `
 
 export const ContainerCoffeList = styled.section`
-  display: grid;
+  display: flex;
   flex-direction: column;
 
   gap: 3.38rem;
   padding: 2rem 10rem;
+`
 
-  & h2 {
+export const HeaderCoffeList = styled.div`
+  display: flex;
+  place-content: space-between;
+
+  & > h2 {
     font-family: 'Baloo 2', sans-serif;
     font-size: 2rem;
     font-weight: 800;
