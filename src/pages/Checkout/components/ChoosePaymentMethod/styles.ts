@@ -1,10 +1,6 @@
 import styled from 'styled-components'
 
-interface ButtonAttributesType {
-  ischecked: boolean
-}
-
-export const Button = styled.button<ButtonAttributesType>`
+export const Button = styled.button`
   display: flex;
   align-items: center;
 
@@ -16,18 +12,13 @@ export const Button = styled.button<ButtonAttributesType>`
   cursor: pointer;
 
   background: ${(props) =>
-    props.ischecked ? props.theme['purple-100'] : props.theme['gray-400']};
+    props['aria-checked'] ? props.theme['purple-100'] : props.theme['gray-400']};
 
-  transition: background 0.5s cubic-bezier(0.075, 0.82, 0.165, 1),
-    box-shadow 0.5s cubic-bezier(0.075, 0.82, 0.165, 1),
-    transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: background .2s ease;
 
   &:hover {
-    background: ${(props) => props.theme['purple-100']};
-    box-shadow: 0 0 0 1px ${(props) => props.theme['purple-700']};
-    transform: scale(1.025);
+    background: ${(props) => props.theme['gray-500']};
   }
-
   & i {
     display: flex;
     align-items: center;

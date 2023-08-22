@@ -11,7 +11,7 @@ export const GlobalStyles = createGlobalStyle`
 	  -moz-osx-font-smoothing: grayscale;
   }
   *:focus {
-    outline-color: ${(props) => props.theme['purple-700']};
+    outline-color: ${(props) => props.theme['yellow-700']};
   }
   body {
 	  background: ${(props) => props.theme['gray-100']};

@@ -107,6 +107,12 @@ export const CounterContainer = styled.div`
 
     background: transparent;
     color: ${(props) => props.theme['purple-600']};
+    & svg {
+      transition: color .2s ease;
+      &:hover {
+        color: ${props => props.theme['purple-700']};
+      }
+    }
   }
   & span {
     display: flex;
@@ -118,7 +124,7 @@ export const CounterContainer = styled.div`
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
 
-    color: ${(props) => props.theme['900']};
+    color: ${(props) => props.theme['gray-900']};
   }
 `
 
@@ -133,4 +139,9 @@ export const ButtonShoppingCart = styled.button`
   border-radius: 0.375rem;
 
   background: ${(props) => props.theme['purple-700']};
+  transition: background .2s ease;
+
+  &:hover {
+    background: ${props => props.theme['purple-600']};
+  }
 `

@@ -7,8 +7,7 @@ export const LayoutContainer = styled.header`
   position: sticky;
   top: 0;
 
-  backdrop-filter: blur(10px);
-  background: transparent;
+  background: ${props => props.theme['gray-100']};
   box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.2);
 
   width: 100%;

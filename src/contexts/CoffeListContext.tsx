@@ -32,6 +32,7 @@ interface CoffeListProps {
   description: string
   price: string
   quantity: number
+  total: string
 }
 interface PaymentMethodsType {
   name: string
@@ -62,6 +63,7 @@ interface ListCoffeDeliveryProps {
   onIncreaseItem: (type: string) => void
   onDecreaceItem: (type: string) => void
   onSelectChecked: (nameTheObjectForChecked: string) => void
+  onItemRemoveFromShoppingCart: (type: string) => void
   // onFilterTheItems: (option: string) => void
   // filteredItems: CoffeOptionsProps[]
   increaseItemsInShoppingCart: (type: string) => void
@@ -81,40 +83,45 @@ export function CoffeListContextProvider({
       options: ['tradicional'],
       type: 'Expresso Tradicional',
       description: 'O tradicional café feito com água quente e grãos moídos',
-      price: '5,00',
+      price:' 5,00',
       quantity: 0,
+      total: '',
     },
     {
       image: ExpressAmerican,
       options: ['tradicional'],
       type: 'Expresso Americano',
       description: 'Expresso diluído, menos intenso que o tradicional',
-      price: '5,50',
+      price:' 5,50',
       quantity: 0,
+      total: '',
     },
     {
       image: ExpressCream,
       options: ['tradicional'],
       type: 'Expresso Cremoso',
       description: 'Café expresso tradicional com espuma cremosa',
-      price: '6,00',
+      price:' 6,00',
       quantity: 0,
+      total: '',
     },
     {
       image: ExpressIce,
       options: ['tradicional', 'gelado'],
       type: 'Expresso Gelado',
       description: 'Bebida preparada com café expresso e cubos de gelo',
-      price: '6,50',
+      price:' 6,50',
       quantity: 0,
+      total: '',
     },
     {
       image: CoffeWithMilk,
       options: ['tradicional', 'com leite'],
       type: 'Café com Leite',
       description: 'Meio a meio de expresso tradicional com leite vaporizado',
-      price: '7,00',
+      price:' 7,00',
       quantity: 0,
+      total: '',
     },
     {
       image: Latte,
@@ -122,8 +129,9 @@ export function CoffeListContextProvider({
       type: 'Latte',
       description:
         'Uma dose de café expresso com o dobro de leite e espuma cremosa',
-      price: '7,50',
+      price:' 7,50',
       quantity: 0,
+      total: '',
     },
     {
       image: Capuccino,
@@ -131,8 +139,9 @@ export function CoffeListContextProvider({
       type: 'Capuccino',
       description:
         'Bebida com canela feita de doses iguais de café, leite e espuma',
-      price: '8,00',
+      price:' 8,00',
       quantity: 0,
+      total: '',
     },
     {
       image: Macchiato,
@@ -140,16 +149,18 @@ export function CoffeListContextProvider({
       type: 'Macchiato',
       description:
         'Café expresso misturado com um pouco de leite quente e espuma',
-      price: '8,50',
+      price:' 8,50',
       quantity: 0,
+      total: '',
     },
     {
       image: Mocaccino,
       options: ['tradicional', 'com leite'],
       type: 'Mocaccino',
       description: 'Café expresso com calda de chocolate, pouco leite e espuma',
-      price: '9,00',
+      price:'9,00',
       quantity: 0,
+      total: '',
     },
     {
       image: CoffeChocolate,
@@ -159,6 +170,7 @@ export function CoffeListContextProvider({
         'Bebida feita com chocolate dissolvido no leite quente e café',
       price: '9,50',
       quantity: 0,
+      total: '',
     },
     {
       image: Cuban,
@@ -168,6 +180,7 @@ export function CoffeListContextProvider({
         'Drink gelado de café expresso com rum, creme de leite e hortelã',
       price: '10,00',
       quantity: 0,
+      total: '',
     },
     {
       image: Havain,
@@ -176,6 +189,7 @@ export function CoffeListContextProvider({
       description: 'Bebida adocicada preparada com café e leite de coco',
       price: '10,50',
       quantity: 0,
+      total: '',
     },
     {
       image: Arabian,
@@ -184,6 +198,7 @@ export function CoffeListContextProvider({
       description: 'Bebida preparada com grãos de café árabe e especiarias',
       price: '11,00',
       quantity: 0,
+      total: '',
     },
     {
       image: Ireland,
@@ -192,6 +207,7 @@ export function CoffeListContextProvider({
       description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
       price: '11,50',
       quantity: 0,
+      total: '',
     },
   ])
   const [itemsTheShoppingCart, setItemsTheShoppingCart] = useState<
@@ -270,13 +286,11 @@ export function CoffeListContextProvider({
       (item) => item.type === type,
     )
 
-    if (typeForAddInShoppingCart) {
+    if (typeForAddInShoppingCart && typeForAddInShoppingCart.quantity > 0) {
       const updatedState = coffeList[indexTheItemForAddInShoppingCart]
       const emptyQuantity = produce(coffeList, (draft) => {
         draft[indexTheItemForAddInShoppingCart].quantity = 0
       })
-      console.table(emptyQuantity)
-      console.table(updatedState)
       setItemsTheShoppingCart((prevState) => [...prevState, updatedState])
       setCoffeList(emptyQuantity)
     }
@@ -294,6 +308,16 @@ export function CoffeListContextProvider({
 
     setPaymentMethods(updatedState)
   }
+  function onItemRemoveFromShoppingCart(type: string) {
+    const typeForRemoveOutShoppingCart = itemsTheShoppingCart.find(
+      (item) => item.type === type,
+    )
+
+    if(typeForRemoveOutShoppingCart) {
+      const updatedState = itemsTheShoppingCart.filter((item) => item.type === type)
+      setItemsTheShoppingCart(updatedState)
+    }
+  }
 
   return (
     <CoffeListContext.Provider
@@ -304,6 +328,7 @@ export function CoffeListContextProvider({
         onIncreaseItem,
         onDecreaceItem,
         onSelectChecked,
+        onItemRemoveFromShoppingCart,
         // onFilterTheItems,
         // filteredItems,
         increaseItemsInShoppingCart,

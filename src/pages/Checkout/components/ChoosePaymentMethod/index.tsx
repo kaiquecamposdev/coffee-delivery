@@ -14,7 +14,7 @@ export function ChoosePaymentMethod() {
       {paymentMethods.map(({ name, method, checked }) => {
         return (
           <Button
-            ischecked={checked}
+            aria-checked={checked}
             onClick={() => handleSelectChecked(name)}
             key={name}
           >
