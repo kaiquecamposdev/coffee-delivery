@@ -1,31 +1,25 @@
-import { Button } from './styles.ts'
+import { ContainerChoosePaymentMethod, Label } from './styles.ts'
 import { useContext } from 'react'
 import { CoffeListContext } from '../../../../contexts/CoffeListContext.tsx'
 
 export function ChoosePaymentMethod() {
-  const { onSelectChecked, paymentMethods } = useContext(CoffeListContext)
-
-  function handleSelectChecked(nameTheObjectForChecked: string) {
-    onSelectChecked(nameTheObjectForChecked)
-  }
+  const { paymentMethods } = useContext(CoffeListContext);
 
   return (
-    <>
-      {paymentMethods.map(({ name, method, checked }) => {
+    <ContainerChoosePaymentMethod>
+      {paymentMethods.map(({ name, method, id }) => {
         return (
-          <Button
-            aria-checked={checked}
-            onClick={() => handleSelectChecked(name)}
-            key={name}
+        <button key={name} type='button'> 
+          <input role="button"tabIndex={0} type="radio" name="radiosPaymentMethods" id={id} />
+          <Label
+            htmlFor={id}
           >
-            {JSON.stringify(console.table(checked))}
-            <i>
-              <img src={method} alt="" />
-            </i>
-            <span>{name}</span>
-          </Button>
+            <img src={method} alt="" />
+            {name}
+          </Label>
+        </button>
         )
       })}
-    </>
+    </ContainerChoosePaymentMethod>
   )
 }

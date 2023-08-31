@@ -43,6 +43,7 @@ export const CardCoffe = styled.div`
 export const OptionsContainer = styled.div`
   display: inline-flex;
   gap: 0.25rem;
+
   & > span {
     font-family: 'Roboto', sans-serif;
     font-size: 0.625rem;

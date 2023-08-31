@@ -13,7 +13,7 @@ export function ContainerCheckoutEmpty() {
           <span>Adicione itens no carrinho</span>
         </div>
         <Link to="/">
-          Volte
+          Voltar
         </Link>
       </ContainerShoppingCartEmpty>
     </>

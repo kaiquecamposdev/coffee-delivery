@@ -28,8 +28,14 @@ export function CardItems() {
 
         const coffeValue = quantity * Number(price.replace(',', '.'));
         const formatedValue = formatCurrency(coffeValue)
-        const { onItemRemoveFromShoppingCart } = useContext(CoffeListContext)
+        const { onItemRemoveFromShoppingCart, onIncreaseItemTheShoppingCart, onDecreaceItemTheShoppingCart} = useContext(CoffeListContext)
 
+        function handleIncreaseItemTheShoppingCart(type: string) {  
+          onIncreaseItemTheShoppingCart(type)
+        }
+        function handleDecreaceItemTheShoppingCart(type: string) {
+          onDecreaceItemTheShoppingCart(type)
+        } 
         function handleItemRemoveFromShoppingCart(type: string) {
           onItemRemoveFromShoppingCart(type)
         }
@@ -45,15 +51,15 @@ export function CardItems() {
                   </span>
                   <ContainerButtons>
                     <CounterContainer>
-                      <button onClick={() => handleDecreaceItem(type)}>
+                      <button type="button" onClick={() => handleDecreaceItemTheShoppingCart(type)}>
                         <Minus size={14} weight="bold" />
                       </button>
                       <span key={quantity}>{quantity}</span>
-                      <button onClick={() => handleIncreaseItem(type)}>
+                      <button type="button" onClick={() => handleIncreaseItemTheShoppingCart(type)}>
                         <Plus size={14} weight="bold" />
                       </button>
                     </CounterContainer>
-                    <RemoveButtonContainer onClick={() => handleItemRemoveFromShoppingCart(type)}>
+                    <RemoveButtonContainer type="button" onClick={() => handleItemRemoveFromShoppingCart(type)}>
                       <Trash size={16} color={defaultTheme['purple-600']}/>
                       <span>remover</span>
                     </RemoveButtonContainer>

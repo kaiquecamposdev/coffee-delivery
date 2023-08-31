@@ -32,12 +32,12 @@ interface CoffeListProps {
   description: string
   price: string
   quantity: number
-  total: string
+  total: number
 }
 interface PaymentMethodsType {
   name: string
   method: string
-  checked: boolean
+  id: string
 }
 
 export type DecreaceItemPropsType = {
@@ -62,7 +62,8 @@ interface ListCoffeDeliveryProps {
   paymentMethods: PaymentMethodsType[]
   onIncreaseItem: (type: string) => void
   onDecreaceItem: (type: string) => void
-  onSelectChecked: (nameTheObjectForChecked: string) => void
+  onIncreaseItemTheShoppingCart: (type: string) => void
+  onDecreaceItemTheShoppingCart: (type: string) => void
   onItemRemoveFromShoppingCart: (type: string) => void
   // onFilterTheItems: (option: string) => void
   // filteredItems: CoffeOptionsProps[]
@@ -85,7 +86,7 @@ export function CoffeListContextProvider({
       description: 'O tradicional café feito com água quente e grãos moídos',
       price:' 5,00',
       quantity: 0,
-      total: '',
+      total: 0,
     },
     {
       image: ExpressAmerican,
@@ -94,7 +95,7 @@ export function CoffeListContextProvider({
       description: 'Expresso diluído, menos intenso que o tradicional',
       price:' 5,50',
       quantity: 0,
-      total: '',
+      total: 0,
     },
     {
       image: ExpressCream,
@@ -103,7 +104,7 @@ export function CoffeListContextProvider({
       description: 'Café expresso tradicional com espuma cremosa',
       price:' 6,00',
       quantity: 0,
-      total: '',
+      total: 0,
     },
     {
       image: ExpressIce,
@@ -112,7 +113,7 @@ export function CoffeListContextProvider({
       description: 'Bebida preparada com café expresso e cubos de gelo',
       price:' 6,50',
       quantity: 0,
-      total: '',
+      total: 0,
     },
     {
       image: CoffeWithMilk,
@@ -121,7 +122,7 @@ export function CoffeListContextProvider({
       description: 'Meio a meio de expresso tradicional com leite vaporizado',
       price:' 7,00',
       quantity: 0,
-      total: '',
+      total: 0,
     },
     {
       image: Latte,
@@ -131,7 +132,7 @@ export function CoffeListContextProvider({
         'Uma dose de café expresso com o dobro de leite e espuma cremosa',
       price:' 7,50',
       quantity: 0,
-      total: '',
+      total: 0,
     },
     {
       image: Capuccino,
@@ -141,7 +142,7 @@ export function CoffeListContextProvider({
         'Bebida com canela feita de doses iguais de café, leite e espuma',
       price:' 8,00',
       quantity: 0,
-      total: '',
+      total: 0,
     },
     {
       image: Macchiato,
@@ -151,7 +152,7 @@ export function CoffeListContextProvider({
         'Café expresso misturado com um pouco de leite quente e espuma',
       price:' 8,50',
       quantity: 0,
-      total: '',
+      total: 0,
     },
     {
       image: Mocaccino,
@@ -160,7 +161,7 @@ export function CoffeListContextProvider({
       description: 'Café expresso com calda de chocolate, pouco leite e espuma',
       price:'9,00',
       quantity: 0,
-      total: '',
+      total: 0,
     },
     {
       image: CoffeChocolate,
@@ -170,7 +171,7 @@ export function CoffeListContextProvider({
         'Bebida feita com chocolate dissolvido no leite quente e café',
       price: '9,50',
       quantity: 0,
-      total: '',
+      total: 0,
     },
     {
       image: Cuban,
@@ -180,7 +181,7 @@ export function CoffeListContextProvider({
         'Drink gelado de café expresso com rum, creme de leite e hortelã',
       price: '10,00',
       quantity: 0,
-      total: '',
+      total: 0,
     },
     {
       image: Havain,
@@ -189,7 +190,7 @@ export function CoffeListContextProvider({
       description: 'Bebida adocicada preparada com café e leite de coco',
       price: '10,50',
       quantity: 0,
-      total: '',
+      total: 0,
     },
     {
       image: Arabian,
@@ -198,7 +199,7 @@ export function CoffeListContextProvider({
       description: 'Bebida preparada com grãos de café árabe e especiarias',
       price: '11,00',
       quantity: 0,
-      total: '',
+      total: 0,
     },
     {
       image: Ireland,
@@ -207,7 +208,7 @@ export function CoffeListContextProvider({
       description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
       price: '11,50',
       quantity: 0,
-      total: '',
+      total: 0,
     },
   ])
   const [itemsTheShoppingCart, setItemsTheShoppingCart] = useState<
@@ -217,22 +218,22 @@ export function CoffeListContextProvider({
     {
       name: 'cartão de crédito',
       method: CreditCard,
-      checked: false,
+      id: 'cartaoDeCredito',
     },
     {
       name: 'cartão de débito',
       method: DebitCard,
-      checked: false,
+      id: 'cartaoDeDebito',
     },
     {
       name: 'dinheiro',
       method: Money,
-      checked: false,
+      id: 'dinheiro',
     },
   ])
   // ESTADO QUE SERÁ ARMAZENADO OS ITENS FILTRADOS
   // const [filteredItems, setFilteredItems] = useState<CoffeOptionsProps[]>([])
-
+  
   function onIncreaseItem(type: string) {
     const updatedState = produce(coffeList, (draft) => {
       const typeForIncrease = draft.find((item) => item.type === type)
@@ -242,6 +243,8 @@ export function CoffeListContextProvider({
       if (typeForIncrease) {
         draft[indexTheTypeForIncrease].quantity++
       }
+      const totalValue = draft[indexTheTypeForIncrease].quantity * Number(draft[indexTheTypeForIncrease].price.replace(',', '.'));
+      draft[indexTheTypeForIncrease].total = totalValue;
     })
     setCoffeList(updatedState)
   }
@@ -251,11 +254,41 @@ export function CoffeListContextProvider({
       const indexTheTypeForDecreace = draft.findIndex(
         (item) => item.type === type,
       )
-      if (typeForDecreace && draft[indexTheTypeForDecreace].quantity > 0) {
+      if (typeForDecreace && draft[indexTheTypeForDecreace].quantity > 1) {
         draft[indexTheTypeForDecreace].quantity--
       }
+      const totalValue = draft[indexTheTypeForDecreace].quantity * Number(draft[indexTheTypeForDecreace].price.replace(',', '.'));
+      draft[indexTheTypeForDecreace].total = totalValue;
     })
     setCoffeList(updatedState)
+  }
+  function onIncreaseItemTheShoppingCart(type: string) {
+    const updatedState = produce(itemsTheShoppingCart, (draft) => {
+      const typeForIncrease = draft.find((item) => item.type === type)
+      const indexTheTypeForIncrease = draft.findIndex(
+        (item) => item.type === type,
+      )
+      if (typeForIncrease) {
+        draft[indexTheTypeForIncrease].quantity++
+      }
+      const totalValue = draft[indexTheTypeForIncrease].quantity * Number(draft[indexTheTypeForIncrease].price.replace(',', '.'));
+      draft[indexTheTypeForIncrease].total = totalValue;
+    })
+    setItemsTheShoppingCart(updatedState)
+  }
+  function onDecreaceItemTheShoppingCart(type: string) {
+    const updatedState = produce(itemsTheShoppingCart, (draft) => {
+      const typeForDecreace = draft.find((item) => item.type === type)
+      const indexTheTypeForDecreace = draft.findIndex(
+        (item) => item.type === type,
+      )
+      if (typeForDecreace && draft[indexTheTypeForDecreace].quantity > 1) {
+        draft[indexTheTypeForDecreace].quantity--
+      }
+      const totalValue = draft[indexTheTypeForDecreace].quantity * Number(draft[indexTheTypeForDecreace].price.replace(',', '.'));
+      draft[indexTheTypeForDecreace].total = totalValue;
+    })
+    setItemsTheShoppingCart(updatedState)
   }
   // LÓGICA DE FILTRAR ITENS
   // function onFilterTheItems(option: string) {
@@ -295,19 +328,6 @@ export function CoffeListContextProvider({
       setCoffeList(emptyQuantity)
     }
   }
-  function onSelectChecked(nameTheObjectForChecked: string) {
-    const updatedState = produce(paymentMethods, (draft) => {
-      const indexTheObjectForChecked = paymentMethods.findIndex(
-        (props) => props.name === nameTheObjectForChecked,
-      )
-
-      const isChecked = draft[indexTheObjectForChecked].checked
-
-      draft[indexTheObjectForChecked].checked = !isChecked
-    })
-
-    setPaymentMethods(updatedState)
-  }
   function onItemRemoveFromShoppingCart(type: string) {
     const typeForRemoveOutShoppingCart = itemsTheShoppingCart.find(
       (item) => item.type === type,
@@ -327,7 +347,8 @@ export function CoffeListContextProvider({
         paymentMethods,
         onIncreaseItem,
         onDecreaceItem,
-        onSelectChecked,
+        onIncreaseItemTheShoppingCart,
+        onDecreaceItemTheShoppingCart,
         onItemRemoveFromShoppingCart,
         // onFilterTheItems,
         // filteredItems,

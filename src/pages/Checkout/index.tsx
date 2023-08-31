@@ -9,7 +9,6 @@ import {
   InfoThree,
   ContainerMethodPayment,
   FormContent,
-  MethodPayment,
   ContentSectionForm,
   ContentCheckoutOrder,
   ContainerPricesItems,
@@ -21,18 +20,30 @@ import { Pin, Cipher } from './assets/icons.ts'
 import { useForm } from 'react-hook-form'
 import { CardItems } from './components/CardItems/index.tsx'
 import { Link } from 'react-router-dom'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { CoffeListContext } from '../../contexts/CoffeListContext.tsx'
 import { ContainerCheckoutEmpty } from './components/ContainerCheckoutEmpty/index.tsx'
 
 export function Checkout() {
   const { register, handleSubmit } = useForm()
   const { itemsTheShoppingCart } = useContext(CoffeListContext)
+  function formatCurrency(value: number) {
+    const options = {
+      currency: 'BRL',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    };
+    return new Intl.NumberFormat('pt-BR', options).format(value);
+  }
+  const totalValueItems = itemsTheShoppingCart.reduce((item, itemAcc) => {
+    return item + itemAcc.total
+  }, 0)
+  const valorEntrega = "10,00";
 
   return (
     <>
       {itemsTheShoppingCart.length === 0 ? <ContainerCheckoutEmpty /> : <ContainerCheckout>
-        <form>
+        <form onSubmit={handleSubmit(e => console.log(e))}>
           <ContainerCheckoutForm>
             <h2>Complete seu pedido</h2>
             <ContainerForm>
@@ -47,7 +58,7 @@ export function Checkout() {
                   </div>
                 </TitleSectionCheckout>
                 <ContentSectionForm>
-                  <input {...register('CEP', { required: true, pattern: /\d{5}-\d{3}/ })} type="text" placeholder="CEP" />
+                  <input {...register('CEP', { required: true })} type="text" placeholder="CEP" />
                   <InfoOne>
                     <input
                       {...register('street', { required: true })}
@@ -99,9 +110,7 @@ export function Checkout() {
                     </p>
                   </div>
                 </TitleSectionCheckout>
-                <MethodPayment>
-                  <ChoosePaymentMethod />
-                </MethodPayment>
+                <ChoosePaymentMethod />
               </ContainerMethodPayment>
             </ContainerForm>
           </ContainerCheckoutForm>
@@ -115,15 +124,15 @@ export function Checkout() {
                 <ContentPricesItems>
                   <div>
                     <p>Total de itens</p>
-                    <span>R$ {}</span>
+                    <span>R$ {formatCurrency(totalValueItems)}</span>
                   </div>
                   <div>
                     <p>Entrega</p>
-                    <span>R$ </span>
+                    <span>R$ {valorEntrega}</span>
                   </div>
                   <div>
                     <p>Total</p>
-                    <span>R$ </span>
+                    <span>R$ {formatCurrency(totalValueItems + Number(valorEntrega.replace(',', '.')))}</span>
                   </div>
                 </ContentPricesItems>
                 <Link to="/shoppingcart/success">

@@ -16,13 +16,13 @@ export const ContainerShoppingCartEmpty = styled.main`
     flex-direction: column;
   }
   & div > p {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
 
     color: ${props => props.theme['gray-600']};
   }
   & div > span {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 
     color: ${props => props.theme['gray-600']};
   }

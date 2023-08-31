@@ -116,11 +116,6 @@ export const ContainerMethodPayment = styled.section`
 
   background: ${(props) => props.theme['gray-200']};
 `
-export const MethodPayment = styled.div`
-  display: flex;
-  align-self: stretch;
-  gap: 2rem;
-`
 export const ContainerCheckoutOrder = styled.section`
   display: flex;
   flex-direction: column;

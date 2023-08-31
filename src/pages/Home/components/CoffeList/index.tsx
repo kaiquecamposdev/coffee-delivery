@@ -46,11 +46,11 @@ export function CoffeList() {
               </div>
               <div>
                 <CounterContainer>
-                  <button onClick={() => handleDecreaceItem(type)}>
+                  <button type='button' onClick={() => handleDecreaceItem(type)}>
                     <Minus size={14} weight="bold" />
                   </button>
                   <span key={quantity}>{quantity}</span>
-                  <button onClick={() => handleIncreaseItem(type)}>
+                  <button type="button" onClick={() => handleIncreaseItem(type)}>
                     <Plus size={14} weight="bold" />
                   </button>
                 </CounterContainer>
