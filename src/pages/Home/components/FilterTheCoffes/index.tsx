@@ -1,9 +1,6 @@
-import { useContext } from 'react'
 import { FilterCoffeOptions } from './styles'
-import { CoffeListContext } from '../../../../contexts/CoffeListContext'
 
 export function FilterTheCoffes() {
-  const { onFilterTheItems } = useContext(CoffeListContext)
   const options = [
     'tradicional',
     'com leite',
@@ -12,7 +9,7 @@ export function FilterTheCoffes() {
     'alcoólico',
   ]
   function handleFilterTheItems(option: string) {
-    onFilterTheItems(option)
+    // onFilterTheItems(option)
   }
 
   return (

@@ -1,3 +1,5 @@
+import CoffeIntro from './assets/CoffeIntro.png'
+import { CoffeList } from './components/CoffeList'
 import { Items } from './components/Items'
 import {
   CoffeLogo,
@@ -8,9 +10,7 @@ import {
   ItemsListTitleContainer,
   Title,
 } from './styles'
-import CoffeIntro from './assets/CoffeIntro.png'
-import { CoffeList } from './components/CoffeList'
-import { FilterTheCoffes } from './components/FilterTheCoffes'
+// import { FilterTheCoffes } from './components/FilterTheCoffes'
 
 export function Home() {
   return (
@@ -34,7 +34,7 @@ export function Home() {
         <ContainerCoffeList>
           <HeaderCoffeList>
             <h2>Nossos cafés</h2>
-            <FilterTheCoffes />
+            {/* <FilterTheCoffes /> */}
           </HeaderCoffeList>
           <CoffeList />
         </ContainerCoffeList>

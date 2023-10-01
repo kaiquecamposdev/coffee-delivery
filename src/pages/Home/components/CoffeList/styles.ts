@@ -3,9 +3,19 @@ import styled from 'styled-components'
 export const CardContainer = styled.div`
   display: grid;
   flex-direction: column;
-  grid-template-columns: 16rem 16rem 16rem 16rem;
+  grid-template-columns: 16rem 16rem 16rem 16rem 16rem;
 
   gap: 2rem 2.5rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 16rem 16rem 16rem;
+  }
+  @media (max-width: 768px) {
+    grid-template-columns: 16rem 16rem;
+  }
+  @media (max-width: 400px) {
+    grid-template-columns: 16rem;
+  }
 `
 
 export const CardCoffe = styled.div`
@@ -109,9 +119,9 @@ export const CounterContainer = styled.div`
     background: transparent;
     color: ${(props) => props.theme['purple-600']};
     & svg {
-      transition: color .2s ease;
+      transition: color 0.2s ease;
       &:hover {
-        color: ${props => props.theme['purple-700']};
+        color: ${(props) => props.theme['purple-700']};
       }
     }
   }
@@ -140,9 +150,9 @@ export const ButtonShoppingCart = styled.button`
   border-radius: 0.375rem;
 
   background: ${(props) => props.theme['purple-700']};
-  transition: background .2s ease;
+  transition: background 0.2s ease;
 
   &:hover {
-    background: ${props => props.theme['purple-600']};
+    background: ${(props) => props.theme['purple-600']};
   }
 `

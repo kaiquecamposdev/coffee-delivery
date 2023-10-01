@@ -7,7 +7,7 @@ export const LayoutContainer = styled.header`
   position: sticky;
   top: 0;
 
-  background: ${props => props.theme['gray-100']};
+  background: ${(props) => props.theme['gray-100']};
   box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.2);
 
   width: 100%;
@@ -16,6 +16,9 @@ export const LayoutContainer = styled.header`
 `
 export const OptionsContainer = styled.div`
   display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
   gap: 1rem;
 `
 export const LocaleContainer = styled.div`

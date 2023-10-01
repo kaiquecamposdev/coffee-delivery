@@ -1,5 +1,8 @@
-import { useContext } from 'react'
 import { Minus, Plus, ShoppingCart } from '@phosphor-icons/react'
+import { produce } from 'immer'
+import { useContext, useState } from 'react'
+import { ShoppingCartContext } from '../../../../contexts/ShoppingCartContext'
+import { coffeList } from '../../../../utils/coffeList'
 import {
   ButtonShoppingCart,
   BuyContainer,
@@ -8,26 +11,36 @@ import {
   CounterContainer,
   OptionsContainer,
 } from './styles'
-import { CoffeListContext } from '../../../../contexts/CoffeListContext'
 
 export function CoffeList() {
-  const {
-    coffeList,
-    onDecreaceItem,
-    onIncreaseItem,
-    increaseItemsInShoppingCart,
-  } = useContext(CoffeListContext)
+  const { addItemShoppingCart } = useContext(ShoppingCartContext)
+  const [coffeListState, setCoffeListState] = useState(coffeList)
 
-  function handleDecreaceItem(type: string) {
-    onDecreaceItem(type)
+  function increaseItem(type: string) {
+    const updatedState = produce(coffeListState, (draft) => {
+      if (!type) return
+
+      const index = draft.findIndex((item) => item.type === type)
+      draft[index].quantity++
+    })
+    setCoffeListState(updatedState)
   }
-  function handleIncreaseItem(type: string) {
-    onIncreaseItem(type)
+  function decreaceItem(type: string) {
+    const updatedState = produce(coffeListState, (draft) => {
+      if (!type) return
+
+      const index = draft.findIndex((item) => item.type === type)
+      draft[index].quantity--
+    })
+    setCoffeListState(updatedState)
+  }
+  function handleAddItemShoppingCart(type: string) {
+    addItemShoppingCart(coffeListState, type)
   }
 
   return (
     <CardContainer>
-      {coffeList.map(
+      {coffeListState.map(
         ({ image, description, price, options, quantity, type }) => (
           <CardCoffe key={type}>
             <img key={image} src={image} alt="" />
@@ -46,16 +59,16 @@ export function CoffeList() {
               </div>
               <div>
                 <CounterContainer>
-                  <button type='button' onClick={() => handleDecreaceItem(type)}>
+                  <button type="button" onClick={() => decreaceItem(type)}>
                     <Minus size={14} weight="bold" />
                   </button>
                   <span key={quantity}>{quantity}</span>
-                  <button type="button" onClick={() => handleIncreaseItem(type)}>
+                  <button type="button" onClick={() => increaseItem(type)}>
                     <Plus size={14} weight="bold" />
                   </button>
                 </CounterContainer>
                 <ButtonShoppingCart
-                  onClick={() => increaseItemsInShoppingCart(type)}
+                  onClick={() => handleAddItemShoppingCart(type)}
                 >
                   <ShoppingCart weight="fill" size={22} color="white" />
                 </ButtonShoppingCart>

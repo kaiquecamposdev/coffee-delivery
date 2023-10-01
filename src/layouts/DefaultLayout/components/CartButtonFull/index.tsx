@@ -1,23 +1,24 @@
 import { ShoppingCart } from '@phosphor-icons/react'
-import { CartButtonFullContainer, CounterItems } from './styles'
-import { defaultTheme } from '../../../../styles/themes/default'
-import { Link } from 'react-router-dom'
-import { CoffeListContext } from '../../../../contexts/CoffeListContext'
 import { useContext, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { ShoppingCartContext } from '../../../../contexts/ShoppingCartContext'
+import { defaultTheme } from '../../../../styles/themes/default'
+import { CartButtonFullContainer, CounterItems } from './styles'
 
 export function CartButtonFull() {
-  const { itemsTheShoppingCart } = useContext(CoffeListContext)
+  const { shoppingCartState } = useContext(ShoppingCartContext)
   const [countItems, setCountItems] = useState<number>(0)
 
   useEffect(() => {
-    const values = itemsTheShoppingCart.map((item) => item.quantity)
-    const sumTheValues = values.reduce((sum, value) => sum + value)
+    const sumTheValues = shoppingCartState
+      .map((item) => item.quantity)
+      .reduce((sum, value) => sum + value)
     setCountItems(sumTheValues)
-  }, [countItems, itemsTheShoppingCart])
+  }, [countItems, shoppingCartState])
 
   return (
     <>
-      <Link to="/shoppingcart/checkout">
+      <Link to="/checkout">
         <CartButtonFullContainer>
           <ShoppingCart
             size={22}

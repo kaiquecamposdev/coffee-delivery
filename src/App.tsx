@@ -1,20 +1,20 @@
-import { Router } from './Router'
-import { ThemeProvider } from 'styled-components'
 import { BrowserRouter } from 'react-router-dom'
-import { defaultTheme } from './styles/themes/default'
+import { ThemeProvider } from 'styled-components'
+import { Router } from './Router'
+import { ShoppingCartContextProvider } from './contexts/ShoppingCartContext'
 import { GlobalStyles } from './styles/Global'
-import { CoffeListContextProvider } from './contexts/CoffeListContext'
+import { defaultTheme } from './styles/themes/default'
 
 export function App() {
   return (
     <>
       <ThemeProvider theme={defaultTheme}>
-        <CoffeListContextProvider>
+        <ShoppingCartContextProvider>
           <BrowserRouter>
             <Router />
           </BrowserRouter>
           <GlobalStyles />
-        </CoffeListContextProvider>
+        </ShoppingCartContextProvider>
       </ThemeProvider>
     </>
   )

@@ -15,6 +15,10 @@ export const ContainerTitle = styled.section`
 
   padding: 5.75rem 10rem;
   gap: 4.81rem;
+
+  @media (min-width: 728px) {
+    grid-template-columns: 1fr;
+  }
 `
 
 export const Title = styled.div`

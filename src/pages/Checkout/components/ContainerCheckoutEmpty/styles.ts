@@ -4,9 +4,14 @@ export const ContainerShoppingCartEmpty = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
+`
+export const ContentShoppingCartEmpty = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
 
-  min-height: 40.5rem;
+  min-height: calc(100vh - 104px);
 
   & div {
     display: flex;
@@ -19,12 +24,12 @@ export const ContainerShoppingCartEmpty = styled.main`
     font-size: 1.25rem;
     font-weight: 700;
 
-    color: ${props => props.theme['gray-600']};
+    color: ${(props) => props.theme['gray-600']};
   }
   & div > span {
     font-size: 1.25rem;
 
-    color: ${props => props.theme['gray-600']};
+    color: ${(props) => props.theme['gray-600']};
   }
   & a {
     display: flex;
@@ -42,13 +47,13 @@ export const ContainerShoppingCartEmpty = styled.main`
     font-size: 0.875rem;
     text-decoration: none;
     text-transform: uppercase;
-    color: ${props => props.theme.white};
-    background: ${props => props.theme['yellow-600']};
+    color: ${(props) => props.theme.white};
+    background: ${(props) => props.theme['yellow-600']};
 
-    transition: background .2s ease;
+    transition: background 0.2s ease;
 
     &:hover {
-      background: ${props => props.theme['yellow-700']};
+      background: ${(props) => props.theme['yellow-700']};
     }
   }
 `

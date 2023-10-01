@@ -10,7 +10,6 @@ export const CartButtonFullContainer = styled.button`
   background: ${(props) => props.theme['yellow-100']};
   cursor: pointer;
 
-  height: 100%;
   padding: 0.5rem;
   border-radius: 0.375rem;
 `
