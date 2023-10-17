@@ -1,45 +1,60 @@
 import styled, { css } from 'styled-components'
 
-export const ContainerCheckout = styled.div`
-  padding: 2.5rem 10rem;
-  height: calc(100vh - 1rem);
+export const CheckoutContainer = styled.main`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+  min-height: calc(100dvh - 6rem);
+`
+export const CheckoutContent = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+
+  max-width: 72rem;
+
+  gap: 2rem;
+  padding: 1.5rem 1.5rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+`
+export const CheckoutFormContainer = styled.section`
   & h2 {
     font-family: 'Baloo 2', monospace;
     font-size: 1.125rem;
-  }
 
-  & form {
-    display: grid;
-    grid-template-columns: 42rem 28rem;
+    padding-bottom: 0.7rem;
   }
 `
-export const ContainerCheckoutForm = styled.main`
-  padding-right: 2rem;
-
+export const TitleContainer = styled.div`
   & h2 {
     padding-bottom: 0.7rem;
   }
 `
-export const ContainerForm = styled.section`
+export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
-
-  gap: 2rem;
-`
-export const FormContent = styled.main`
-  display: flex;
-  flex-direction: column;
-
-  background: ${(props) => props.theme['gray-200']};
 
   border-radius: 0.375rem;
-  padding: 2.5rem;
+  & form {
+    display: flex;
+    flex-direction: column;
+  }
+`
+export const FormContent = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 0.375rem;
   gap: 2rem;
 `
-export const TitleSectionCheckout = styled.div`
+export const TitleFormContainer = styled.div`
   display: flex;
-
+`
+export const TitleFormContent = styled.div`
+  display: inline-flex;
   gap: 0.7rem;
 
   & i {
@@ -58,7 +73,13 @@ export const TitleSectionCheckout = styled.div`
     }
   }
 `
-export const ContentSectionForm = styled.div`
+export const InputsContainer = styled.div`
+  background: ${(props) => props.theme['gray-200']};
+
+  border-radius: 0.375rem;
+  padding: 2.5rem;
+`
+export const InputsContent = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -69,9 +90,9 @@ export const ContentSectionForm = styled.div`
     justify-content: center;
     align-items: center;
 
-    width: 12.5rem;
+    min-width: 100%;
+    max-width: 12.5rem;
 
-    border: 1px solid ${(props) => props.theme['gray-400']};
     border-radius: 0.25rem;
     padding: 0.75rem;
     gap: 0.25rem;
@@ -82,22 +103,7 @@ export const ContentSectionForm = styled.div`
     &::placeholder {
       color: ${(props) => props.theme['gray-600']};
     }
-    & span {
-      -webkit-animation: shake-bottom 0.8s
-        cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
-      animation: shake-bottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
-    }
   }
-`
-export const ContainerInput = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  gap: 0.5rem;
-`
-export const SpanError = styled.span`
-  font-size: 0.875rem;
-  color: ${(props) => props.theme['red-500']};
 `
 export const InfoOne = styled.div`
   display: flex;
@@ -111,27 +117,30 @@ export const InfoOne = styled.div`
   }
 `
 export const InfoTwo = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
   gap: 0.75rem;
 
   & div:nth-of-type(2) {
     position: relative;
-    width: 100%;
 
-    & > input {
-      width: 100%;
-    }
     & > em {
       position: absolute;
 
-      top: calc(42px - 0.75rem - 1rem);
-      left: calc(348px - 0.75rem - 3.25rem);
+      right: 0.75rem;
+      top: calc(25% + 0.125rem);
 
       font-size: 0.75rem;
       font-weight: 400;
       font-style: italic;
       color: ${(props) => props.theme['gray-600']};
+      user-select: none;
     }
+  }
+
+  @media (max-width: 660px) {
+    grid-template-columns: 1fr;
   }
 `
 export const OptionalInput = styled.input`
@@ -140,7 +149,7 @@ export const OptionalInput = styled.input`
   }
   & + em {
     ${(props) =>
-      props.value === ''
+      props.value === '' && props.placeholder !== ''
         ? css`
             display: block;
           `
@@ -150,38 +159,50 @@ export const OptionalInput = styled.input`
   }
 `
 export const InfoThree = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+
   gap: 0.75rem;
 
-  & div:nth-of-type(2) {
-    width: 100%;
-    & input {
-      width: 100%;
-    }
-  }
   & div:nth-of-type(3) {
     & input {
-      width: 60px;
+      width: 100%;
+      max-width: 3.75rem;
     }
   }
+  @media (max-width: 660px) {
+    grid-template-columns: 1fr;
+  }
 `
-export const ContainerMethodPayment = styled.section`
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.5rem;
+`
+export const MethodPaymentContainer = styled.section`
+  border-radius: 0.375rem;
+
+  background: ${(props) => props.theme['gray-200']};
+`
+export const MethodPaymentContent = styled.div`
   display: flex;
   flex-direction: column;
 
   padding: 2.5rem;
   border-radius: 0.375rem;
   gap: 2rem;
-
-  background: ${(props) => props.theme['gray-200']};
 `
-export const ContainerChoosePaymentMethod = styled.div`
-  display: flex;
-  justify-self: stretch;
+export const ChoosePaymentMethodContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+
+  border-radius: 0.375rem;
   gap: 0.75rem;
 
   & button {
-    flex: 1;
+    height: max-content;
     border-radius: 0.375rem;
 
     & input[type='radio'] {
@@ -195,51 +216,52 @@ export const ContainerChoosePaymentMethod = styled.div`
       }
     }
   }
+  @media (max-width: 660px) {
+    grid-template-columns: 1fr;
+  }
 `
 export const Label = styled.label`
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
 
-  flex: 1 0 0;
-
-  user-select: none;
   border-radius: 0.375rem;
   padding: 1rem;
   gap: 0.75rem;
+
+  user-select: none;
   cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
 
-  font-size: 0.75rem;
-  text-transform: uppercase;
-
-  transition: background 0.2s ease;
-
-  background: ${(props) => props.theme['gray-400']};
+  background: ${(props) => props.theme['gray-300']};
   box-shadow: 0 0 0 1px ${(props) => props.theme['gray-500']};
 
   &:hover {
     background: ${(props) => props.theme['gray-500']};
   }
   & img {
-    width: 1rem;
+    width: 100%;
+    max-width: 1rem;
   }
   & span {
-    flex-wrap: nowrap;
-
+    text-align: center;
     color: ${(props) => props.theme['gray-800']};
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
   }
 `
-export const ContainerCheckoutOrder = styled.section`
+export const CheckoutOrderContainer = styled.section`
   display: flex;
   flex-direction: column;
+
+  width: 100%;
+  max-width: 44.25rem;
 
   h2 {
     padding-bottom: 0.75rem;
   }
 `
-export const ContentCheckoutOrder = styled.div`
+export const CheckoutOrderContent = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -248,9 +270,13 @@ export const ContentCheckoutOrder = styled.div`
   padding: 2.5rem;
   border-radius: 0.375rem 2.75rem;
   gap: 1.5rem;
+
+  @media (max-width: 1024px) {
+    border-radius: 0.375rem;
+  }
 `
-export const ContainerItems = styled.div``
-export const ContainerPricesItems = styled.div`
+export const ItemsContainer = styled.div``
+export const PricesItemsContainer = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -284,12 +310,12 @@ export const ContainerPricesItems = styled.div`
     cursor: pointer;
     transition: background 0.2s ease;
 
-    &:hover {
+    &:hover:not(:disabled) {
       background: ${(props) => props.theme['yellow-700']};
     }
   }
 `
-export const ContentPricesItems = styled.div`
+export const PricesItemsContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;

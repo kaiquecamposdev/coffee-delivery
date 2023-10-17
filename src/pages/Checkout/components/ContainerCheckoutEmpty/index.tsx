@@ -1,10 +1,10 @@
+import { defaultTheme } from '@/styles/themes/default.ts'
 import { ShoppingCart } from '@phosphor-icons/react'
-import { defaultTheme } from '../../../../styles/themes/default'
+import { Link } from 'react-router-dom'
 import {
   ContainerShoppingCartEmpty,
   ContentShoppingCartEmpty,
 } from './styles.ts'
-import { Link } from 'react-router-dom'
 
 export function ContainerCheckoutEmpty() {
   return (

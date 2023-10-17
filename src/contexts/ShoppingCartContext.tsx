@@ -27,14 +27,21 @@ export const schemaForm = z.object({
   cep: z
     .string()
     .min(1, 'Cep incorreto')
-    .max(9)
-    .regex(/^\d{5}-\d{3}$/),
+    .max(8)
+    .regex(/^\d{8}$/)
+    .or(
+      z
+        .string()
+        .min(1, 'Cep incorreto')
+        .max(9)
+        .regex(/^\d{5}-\d{3}$/),
+    ),
   street: z.string().min(1, 'Rua é requerido'),
   streetNumber: z.string().min(1, 'Número da rua é requerido'),
   adjunt: z.string().optional(),
   neighborhood: z.string().min(1, 'Bairro é requerido'),
   city: z.string().min(1, 'Cidade é requerido'),
-  stateForm: z.string().min(1).max(2, 'Estado é requerido'),
+  state: z.string().min(1).max(2, 'Estado é requerido'),
   methodPayments: z.enum(['credito', 'debito', 'dinheiro']),
 })
 export type SchemaFormType = z.infer<typeof schemaForm>
@@ -61,7 +68,8 @@ export function ShoppingCartContextProvider({
         '@ignite-coffeDelivery:shopping-cart-state-1.0.0',
       )
       if (shoppingCartStoredAsJSON) {
-        return JSON.parse(shoppingCartStoredAsJSON)
+        const { shoppingCart } = JSON.parse(shoppingCartStoredAsJSON)
+        return shoppingCart
       }
       return initialState
     },

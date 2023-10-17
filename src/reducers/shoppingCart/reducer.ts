@@ -31,11 +31,14 @@ export function shoppingCartReducer(
         const updatedItem = updatedState?.find(
           ({ type }) => type === action.payload.type,
         )
-        localStorage.setItem(
-          '@ignite-coffeDelivery:shopping-cart-state-1.0.0',
-          JSON.stringify([...state, updatedItem]),
-        )
-        return [...state, updatedItem]
+        if (updatedItem && updatedItem.quantity > 0) {
+          localStorage.setItem(
+            '@ignite-coffeDelivery:shopping-cart-state-1.0.0',
+            JSON.stringify({ shoppingCart: [...state, updatedItem] }),
+          )
+          return [...state, updatedItem]
+        }
+        return state
       }
       break
     case ActionTypes.INCREASE_QUANTITY_ITEM_SHOPPING_CART:
@@ -53,7 +56,7 @@ export function shoppingCartReducer(
         })
         localStorage.setItem(
           '@ignite-coffeDelivery:shopping-cart-state-1.0.0',
-          JSON.stringify(updatedState),
+          JSON.stringify({ shoppingCart: updatedState }),
         )
         return updatedState
       }
@@ -73,7 +76,7 @@ export function shoppingCartReducer(
         })
         localStorage.setItem(
           '@ignite-coffeDelivery:shopping-cart-state-1.0.0',
-          JSON.stringify(updatedState),
+          JSON.stringify({ shoppingCart: updatedState }),
         )
         return updatedState
       }
@@ -85,7 +88,7 @@ export function shoppingCartReducer(
         )
         localStorage.setItem(
           '@ignite-coffeDelivery:shopping-cart-state-1.0.0',
-          JSON.stringify(updatedState),
+          JSON.stringify({ shoppingCart: updatedState }),
         )
         return updatedState
       }

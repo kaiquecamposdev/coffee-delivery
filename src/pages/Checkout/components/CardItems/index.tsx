@@ -1,9 +1,9 @@
+import { ShoppingCartContext } from '@/contexts/ShoppingCartContext'
+import { CounterContainer } from '@/pages/Home/components/CoffeList/styles'
+import { defaultTheme } from '@/styles/themes/default'
+import { formatCurrency } from '@/utils/formatCurrency'
 import { Minus, Plus, Trash } from '@phosphor-icons/react'
 import { useContext } from 'react'
-import { ShoppingCartContext } from '../../../../contexts/ShoppingCartContext'
-import { defaultTheme } from '../../../../styles/themes/default'
-import { formatCurrency } from '../../../../utils/formatCurrency'
-import { CounterContainer } from '../../../Home/components/CoffeList/styles'
 import {
   CardContainer,
   ContainerButtons,
@@ -47,7 +47,7 @@ export function CardItems() {
                       >
                         <Minus size={14} weight="bold" />
                       </button>
-                      <span key={quantity}>{quantity}</span>
+                      <span>{quantity}</span>
                       <button
                         type="button"
                         onClick={() => handleIncreaseItemTheShoppingCart(type)}

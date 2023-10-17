@@ -10,12 +10,17 @@ export const GlobalStyles = createGlobalStyle`
 	  -webkit-font-smoothing: antialiased;
 	  -moz-osx-font-smoothing: grayscale;
   }
-  *:focus {
+  *:disabled,
+  button:disabled, 
+  input:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  *:focus { 
     outline-color: ${(props) => props.theme['yellow-700']};
   }
   body {
 	  background: ${(props) => props.theme['gray-100']};
-    color: ${(props) => props.theme['gray-700']};
 		-webkit-font-smoothing: antialiased;
   }
 	body, input, textarea, button {
@@ -23,7 +28,13 @@ export const GlobalStyles = createGlobalStyle`
 		font-weight: 400;
 		font-size: 1rem;
 	}
+  img {
+    max-width: 100%;
+    height: auto;
+  }
   * {
+    color: ${(props) => props.theme['gray-700']};
+
     scrollbar-width: auto;
     scrollbar-color: transparent ${(props) => props.theme.white};
   }
@@ -38,70 +49,4 @@ export const GlobalStyles = createGlobalStyle`
     border-radius: 10px;
     border: 2px solid ${(props) => props.theme.white};
   }
-  @-webkit-keyframes shake-bottom {
-  0%,
-  100% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-    -webkit-transform-origin: 50% 100%;
-            transform-origin: 50% 100%;
-  }
-  10% {
-    -webkit-transform: rotate(2deg);
-            transform: rotate(2deg);
-  }
-  20%,
-  40%,
-  60% {
-    -webkit-transform: rotate(-4deg);
-            transform: rotate(-4deg);
-  }
-  30%,
-  50%,
-  70% {
-    -webkit-transform: rotate(4deg);
-            transform: rotate(4deg);
-  }
-  80% {
-    -webkit-transform: rotate(-2deg);
-            transform: rotate(-2deg);
-  }
-  90% {
-    -webkit-transform: rotate(2deg);
-            transform: rotate(2deg);
-  }
-}
-@keyframes shake-bottom {
-  0%,
-  100% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-    -webkit-transform-origin: 50% 100%;
-            transform-origin: 50% 100%;
-  }
-  10% {
-    -webkit-transform: rotate(2deg);
-            transform: rotate(2deg);
-  }
-  20%,
-  40%,
-  60% {
-    -webkit-transform: rotate(-4deg);
-            transform: rotate(-4deg);
-  }
-  30%,
-  50%,
-  70% {
-    -webkit-transform: rotate(4deg);
-            transform: rotate(4deg);
-  }
-  80% {
-    -webkit-transform: rotate(-2deg);
-            transform: rotate(-2deg);
-  }
-  90% {
-    -webkit-transform: rotate(2deg);
-            transform: rotate(2deg);
-  }
-}
 `

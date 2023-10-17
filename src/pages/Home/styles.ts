@@ -1,33 +1,47 @@
 import styled from 'styled-components'
-import backgroundTitle from './assets/backgroundTitle.png'
+import background from './assets/backgroundTitle.png'
 
 export const ContainerHome = styled.main`
-  display: grid;
+  display: flex;
+  flex-direction: column;
+
+  gap: 5.75rem;
 `
-
 export const ContainerTitle = styled.section`
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  background: ${(props) => props.theme['gray-100']} url(${backgroundTitle})
-    center center no-repeat;
+  height: calc(100dvh - 6rem);
+
+  background: no-repeat url(${background});
   background-size: cover;
+`
+export const ContentTitle = styled.div`
+  width: 100%;
+  max-width: 72rem;
+`
+export const Content = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  padding: 5.75rem 10rem;
-  gap: 4.81rem;
+  padding: 1.5rem 1.5rem;
 
-  @media (min-width: 728px) {
-    grid-template-columns: 1fr;
+  gap: 4rem;
+
+  @media (max-width: 1024px) {
+    flex-direction: column-reverse;
+    align-items: center;
   }
 `
-
 export const Title = styled.div`
   display: flex;
   flex-direction: column;
 
   h1 {
     font-family: 'Baloo 2', sans-serif;
-    font-size: 3rem;
+    font-size: clamp(1.5rem, 0.25rem + 4vw, 2.5rem);
     font-weight: 800;
 
     margin-bottom: 1rem;
@@ -36,46 +50,52 @@ export const Title = styled.div`
   }
   h2 {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 0.9643rem + 0.1786vw, 1.25rem);
     font-weight: 400;
 
     margin-bottom: 4.13rem;
 
     color: ${(props) => props.theme['gray-800']};
   }
-`
 
-export const ItemsListTitleContainer = styled.div`
-  display: grid;
-  grid-template-columns: auto auto;
-
-  gap: 1.25rem 2.5rem;
-`
-
-export const CoffeLogo = styled.div`
-  & img {
-    display: block;
-    width: 100%;
+  @media (max-width: 1024px) {
+    text-align: center;
   }
 `
+export const ItemsListTitleContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 
+  gap: 1.25rem 2.5rem;
+
+  @media (max-width: 1024px) {
+    justify-content: center;
+  }
+`
+export const CoffeLogo = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & img {
+    display: block;
+
+    width: clamp(36rem, 34.2857rem + 8.5714vw, 48rem);
+  }
+`
 export const ContainerCoffeList = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+`
+export const ContentCoffeList = styled.div`
   display: flex;
   flex-direction: column;
 
+  width: 100%;
+  max-width: 72rem;
+
   gap: 3.38rem;
-  padding: 2rem 10rem;
-`
-
-export const HeaderCoffeList = styled.div`
-  display: flex;
-  place-content: space-between;
-
-  & > h2 {
-    font-family: 'Baloo 2', sans-serif;
-    font-size: 2rem;
-    font-weight: 800;
-
-    color: ${(props) => props.theme['gray-800']};
-  }
 `

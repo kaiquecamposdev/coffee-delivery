@@ -2,20 +2,26 @@ import styled from 'styled-components'
 
 export const LayoutContainer = styled.header`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 
-  position: sticky;
-  top: 0;
+  min-height: 6rem;
 
   background: ${(props) => props.theme['gray-100']};
-  box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.2);
-
-  width: 100%;
-  height: 6.5rem;
-  padding: 2rem 10rem;
 `
-export const OptionsContainer = styled.div`
-  display: inline-flex;
+export const LayoutContent = styled.div`
+  width: 100%;
+  max-width: 72rem;
+
+  & > div {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 0 1.5rem;
+  }
+`
+export const OptionsContainer = styled.nav`
+  display: flex;
   justify-content: center;
   align-items: center;
 

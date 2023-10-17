@@ -1,17 +1,19 @@
 import styled from 'styled-components'
 
-export const CartButtonFullContainer = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const CartButtonFullContainer = styled.div`
+  & a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  position: relative;
+    position: relative;
 
-  background: ${(props) => props.theme['yellow-100']};
-  cursor: pointer;
+    background: ${(props) => props.theme['yellow-100']};
+    cursor: pointer;
 
-  padding: 0.5rem;
-  border-radius: 0.375rem;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+  }
 `
 
 export const CounterItems = styled.span`

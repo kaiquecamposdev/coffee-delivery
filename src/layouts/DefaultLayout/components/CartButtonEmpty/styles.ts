@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const CartButtonEmptyContainer = styled.button`
+export const CartButtonEmptyContainer = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;

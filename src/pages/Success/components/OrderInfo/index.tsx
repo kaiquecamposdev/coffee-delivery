@@ -8,7 +8,7 @@ import { Container, Info } from './styles'
 
 export function OrderInfo() {
   const navigate = useNavigate()
-  const { state } = useLocation()
+  const stored = useLocation()
   const methods = {
     credito: 'Cartão de Crédito',
     debito: 'Cartão de Débito',
@@ -16,16 +16,16 @@ export function OrderInfo() {
   }
 
   useEffect(() => {
-    if (!state) {
+    if (!stored.state) {
       navigate('/')
     }
-  }, [navigate, state])
+  }, [navigate, stored])
 
-  if (!state) {
+  if (!stored.state) {
     return null
   }
-  const { street, neighborhood, city, stateForm, methodPayments } =
-    state.formData as SchemaFormType
+  const { street, neighborhood, city, state, methodPayments } =
+  stored.state.formData as SchemaFormType
 
   return (
     <Container>
@@ -39,7 +39,7 @@ export function OrderInfo() {
             <strong>{street}</strong>
           </p>
           <span>
-            {neighborhood} - {city}, {stateForm}
+            {neighborhood || 'Não informado'} - {city || 'Não informado'}, {state || 'Não informado'}
           </span>
         </div>
       </Info>

@@ -7,8 +7,7 @@ export const ContainerButtons = styled.div`
 `
 export const CardContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-self: stretch;
+  gap: 4rem;
 
   padding: 0.5rem 0.25rem;
 
@@ -19,13 +18,14 @@ export const CardContainer = styled.div`
     & img {
       display: block;
 
-      width: 4rem;
+      width: 100%;
+      max-width: 4rem;
     }
     & > div {
       display: flex;
       flex-direction: column;
 
-      gap: .5rem;
+      gap: 0.5rem;
     }
   }
   & > span {
@@ -38,19 +38,19 @@ export const RemoveButtonContainer = styled.button`
 
   padding: 0.5rem;
   border-radius: 0.375rem;
-  gap: .25rem;
+  gap: 0.25rem;
 
-  background: ${props => props.theme['gray-400']};
-  transition: background .2s ease;
+  background: ${(props) => props.theme['gray-400']};
+  transition: background 0.2s ease;
   cursor: pointer;
 
   &:hover {
-    background: ${props => props.theme['gray-500']};
+    background: ${(props) => props.theme['gray-500']};
   }
   & span {
     font-size: 0.75rem;
     text-transform: uppercase;
-    color: ${props => props.theme['gray-700']};
+    color: ${(props) => props.theme['gray-700']};
   }
 `
 export const Divider = styled.div`
@@ -59,5 +59,5 @@ export const Divider = styled.div`
 
   margin: 1.5rem 0;
 
-  background: ${props => props.theme['gray-500']};
+  background: ${(props) => props.theme['gray-500']};
 `

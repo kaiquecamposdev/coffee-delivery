@@ -1,44 +1,13 @@
-import { Coffee, Package, ShoppingCart, Timer } from '@phosphor-icons/react'
-import { ReactElement } from 'react'
+import { itemsList } from '@/utils/itemsList'
 import { ListContainer } from './styles'
-import { defaultTheme } from '../../../../styles/themes/default'
 
 export function Items() {
-  interface ItemListType {
-    icon: ReactElement
-    color: string
-    content: string
-  }
-
-  const itemsList: ItemListType[] = [
-    {
-      icon: <ShoppingCart weight="fill" size={16} color="white" />,
-      color: defaultTheme['yellow-700'],
-      content: 'Compra simples e segura',
-    },
-    {
-      icon: <Package weight="fill" size={16} color="white" />,
-      color: defaultTheme['gray-800'],
-      content: 'Embalagem mantém o café intacto',
-    },
-    {
-      icon: <Timer weight="fill" size={16} color="white" />,
-      color: defaultTheme['yellow-600'],
-      content: 'Entrega rápida e rastreada',
-    },
-    {
-      icon: <Coffee weight="fill" size={16} color="white" />,
-      color: defaultTheme['purple-600'],
-      content: 'O café chega fresquinho até você',
-    },
-  ]
-
   return (
     <>
-      {itemsList.map(({ content, color, icon }) => {
+      {itemsList.map(({ content, color, Icon }) => {
         return (
           <ListContainer key={content} color={color}>
-            <i>{icon}</i>
+            <i>{Icon && <Icon weight="fill" size={16} color="white" />}</i>
             <span>{content}</span>
           </ListContainer>
         )

@@ -17,6 +17,7 @@ export const ListContainer = styled.div`
     background: ${(props) => props.color};
   }
   & span {
+    font-size: clamp(1rem, 0.9643rem + 0.1786vw, 1.25rem);
     color: ${(props) => props.theme['gray-700']};
   }
 `

@@ -1,5 +1,5 @@
+import { defaultTheme } from '@/styles/themes/default'
 import { ShoppingCart } from '@phosphor-icons/react'
-import { defaultTheme } from '../../../../styles/themes/default'
 import { CartButtonEmptyContainer } from './styles'
 
 export function CartButtonEmpty() {

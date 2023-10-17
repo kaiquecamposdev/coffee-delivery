@@ -9,9 +9,12 @@ export const ContentShoppingCartEmpty = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   flex-direction: column;
 
-  min-height: calc(100vh - 104px);
+  max-width: 72rem;
+
+  min-height: calc(100dvh - 6rem);
 
   & div {
     display: flex;
@@ -21,13 +24,13 @@ export const ContentShoppingCartEmpty = styled.div`
     flex-direction: column;
   }
   & div > p {
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 0.9643rem + 0.1786vw, 1.25rem);
     font-weight: 700;
 
     color: ${(props) => props.theme['gray-600']};
   }
   & div > span {
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 0.9643rem + 0.1786vw, 1.25rem);
 
     color: ${(props) => props.theme['gray-600']};
   }
