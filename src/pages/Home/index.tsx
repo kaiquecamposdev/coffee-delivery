@@ -1,4 +1,4 @@
-import CoffeIntro from './assets/CoffeIntro.png'
+import coffeIntro from './assets/coffeIntro.svg'
 import { CoffeList } from './components/CoffeList'
 import { Items } from './components/Items'
 import {
@@ -31,7 +31,7 @@ export function Home() {
                 </ItemsListTitleContainer>
               </Title>
               <CoffeLogo>
-                <img src={CoffeIntro} alt="" />
+                <img src={coffeIntro} alt="" />
               </CoffeLogo>
             </Content>
           </ContentTitle>

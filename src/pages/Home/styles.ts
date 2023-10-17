@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import background from './assets/backgroundTitle.png'
+import background from './assets/backgroundTitle.svg'
 
 export const ContainerHome = styled.main`
   display: flex;
