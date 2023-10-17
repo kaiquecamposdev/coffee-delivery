@@ -17,24 +17,17 @@ import {
 
 export function Header() {
   const { shoppingCartState } = useContext(ShoppingCartContext)
-  const [formState, setFormState] = useState({
-    cep: '',
-    street: '',
-    streetNumber: '',
-    neighborhood: '',
-    city: '',
-    state: '',
-    methodPayments: 'credito',
-    adjunct: '',
-  } as SchemaFormType)
+  const [formState, setFormState] = useState<SchemaFormType>()
 
   useEffect(() => {
     const formDataStored = localStorage.getItem(
       '@ignite-coffeDelivery:shopping-cart-form-1.0.0',
     )
-    const { form } = JSON.parse(formDataStored || '{}')
-    setFormState({ ...formState, ...form })
-  }, [formState])
+    if (formDataStored) {
+      const { form } = JSON.parse(formDataStored)
+      setFormState(form)
+    }
+  }, [])
 
   return (
     <>
@@ -124,7 +117,7 @@ export function Header() {
                   weight="fill"
                   fill={defaultTheme['purple-600']}
                 />
-                {formState.city && (
+                {formState && formState.city && (
                   <span>
                     {formState.city}, {formState.state}
                   </span>
