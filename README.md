@@ -21,7 +21,11 @@ O projeto Coffee Delivery é um aplicativo web que permite aos usuários navegar
 ### Instalação 🔧
 **1. Clone o repositório coffee-delivery:**
 ```bash
-git clone https://github.com/kaiquecamposdev/coffee-delivery
+git clone https://github.com/kaiquecamposdev/coffee-delivery.git
+```
+ou
+```bash
+gh repo clone kaiquecamposdev/coffee-delivery
 ```
 **2. Instale as dependências:**
 ```bash
