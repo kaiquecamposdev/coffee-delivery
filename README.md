@@ -1,42 +1,42 @@
 # Coffee Delivery ☕
-O projeto Coffee Delivery é um aplicativo web que permite aos usuários navegar e comprar itens de café. Ele inclui funcionalidades como adicionar itens ao carrinho de compras, selecionar diferentes opções de café, gerenciar o conteúdo do carrinho, fornecer informações de entrega e selecionar um método de pagamento. O projeto visa fornecer uma experiência perfeita e amigável para os entusiastas do café, simplificando o processo de pedidos de suas variedades de café favoritas online.
-### Recursos 📦
-- **Adicionar Itens ao Carrinho:** Os usuários podem selecionar itens de café de um catálogo e adicioná-los ao carrinho para compra.
-- **Gerenciamento do Carrinho:** Os usuários podem visualizar e modificar os itens em seus carrinhos, ajustar quantidades e remover itens.
-- **Informações de Entrega:** Os usuários podem fornecer seu endereço de entrega e selecionar uma opção de entrega.
-- **Opções de Pagamento:** Os usuários podem escolher seu método de pagamento preferido.
-- **Rastreamento de Pedidos:** (Recurso futuro) Os usuários podem rastrear o status de seus pedidos.
-### Tecnologias Utilizadas 💻
-- **React:** Biblioteca JavaScript para construir interfaces de usuário.
-- **TypeScript:** Linguagem de tipagem estática para JavaScript.
-- **Vite:** Ferramenta de desenvolvimento rápido para React.
-- **Styled Components:** Biblioteca para estilização com CSS-in-JS.
-### Instalando Extensões 🚀
-1. Abra o **Visual Studio Code** em seu computador.
-2. Pressione `CTRL + SHIFT + X` para abrir o menu de extensões.
-3. Na caixa de pesquisa, digite "styled-components.vscode-styled-components" e pressione "Enter".
-4. Instale a extensão "styled-components.vscode-styled-components".
-5. Volte para a caixa de pesquisa e digite "dbaeumer.vscode-eslint". Pressione "Enter".
-6. Instale a extensão "dbaeumer.vscode-eslint".
-### Instalação 🔧
-**1. Clone o repositório coffee-delivery:**
+The Coffee Delivery project is a web application that allows users to browse and purchase coffee items. It includes features like adding items to a shopping cart, selecting different coffee options, managing cart contents, providing delivery information, and selecting a payment method. The project aims to provide a seamless and user-friendly experience for coffee enthusiasts, simplifying the process of ordering their favorite coffee varieties online.
+### Features 📦
+- **Add Items to Cart:** Users can select coffee items from a catalog and add them to their cart for purchase.
+- **Cart Management:** Users can view and modify the items in their carts, adjust quantities, and remove items.
+- **Delivery Information:** Users can provide their delivery address and select a delivery option.
+- **Payment Options:** Users can choose their preferred payment method.
+- **Order Tracking:** (Future feature) Users can track the status of their orders.
+### Technologies Used 💻
+- **React:** JavaScript library for building user interfaces.
+- **TypeScript:** Statically typed language for JavaScript.
+- **Vite:** Fast development tool for React.
+- **Styled Components:** Library for styling with CSS-in-JS.
+### Installing Extensions 🔧
+1. Open **Visual Studio Code** on your computer.
+2. Press `CTRL + SHIFT + X` to open the extensions menu.
+3. In the search box, type "styled-components.vscode-styled-components" and press "Enter".
+4. Install the "styled-components.vscode-styled-components" extension.
+5. Go back to the search box and type "dbaeumer.vscode-eslint". Press "Enter".
+6. Install the "dbaeumer.vscode-eslint" extension.
+### Installation 🚀
+**1. Clone the coffee-delivery repository:**
 ```bash
 git clone https://github.com/kaiquecamposdev/coffee-delivery.git
 ```
-ou
+or
 ```bash
 gh repo clone kaiquecamposdev/coffee-delivery
 ```
-**2. Instale as dependências:**
+**2. Install the dependencies:**
 ```bash
 cd coffe-delivery && npm i
 ```
-**3. Inicie o servidor de desenvolvimento:**
+**3. Start the development server:**
 ```bash
 npm run dev
 ```
-**4. Acesse o aplicativo em `http://localhost:3000`.**
-### Contribuições 🤝
-Contribuições para o projeto são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
-### Licença 📝
-Este projeto é licenciado sob a [MIT License](./LICENSE).
+**4. Access the application at `http://localhost:3000`.**
+### Contributions 🤝
+Contributions to the project are welcome! Feel free to open issues or submit pull requests.
+### License 📝
+This project is licensed under the [MIT License](./LICENSE).
